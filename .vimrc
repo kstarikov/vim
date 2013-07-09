@@ -1,3 +1,5 @@
+syntax on
+
 set incsearch
 set ignorecase
 set hlsearch

@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/kstarikov/IdeaProjects/todolist'
+let g:netrw_dirhist_2='/Users/kstarikov/IdeaProjects/todolist/app'
+let g:netrw_dirhist_3='/Users/kstarikov/IdeaProjects/todolist/app/controllers'
