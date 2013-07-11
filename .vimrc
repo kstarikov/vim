@@ -54,7 +54,7 @@ set viminfo='20,\"50,:20,%,n~/.viminfo
 
 
 set ruler
-set number
+set nonumber
 set hidden
 
 
