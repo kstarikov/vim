@@ -1,4 +1,16 @@
+let mapleader=","
+
+set completeopt = "menu,longest,preview"
+
 syntax on
+filetype plugin on
+
+colorscheme desert
+
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+
+set hidden
 
 " search
 set incsearch
@@ -37,20 +49,8 @@ set showcmd
 " Write swap file to disk after every 50 characters
 set updatecount=50
 
-" Remember things between sessions
-"
-" '20 - remember marks for 20 previous files
-" \"50 - save 50 lines for each register
-" :20 - remember 20 items in command-line history 
-" % - remember the buffer list (if vim started without a file arg)
-" n - set name of viminfo file
-set viminfo='20,\"50,:20,%,n~/.viminfo
-
-
 set ruler
 set nonumber
-set hidden
-
 
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
@@ -62,10 +62,6 @@ vmap ,b :BufExplorer<cr>
 
 map ,d :bp<cr>
 map ,f :bn<cr>
-
-" map and to paste below/above and reformat
-nnoremap P P'[v']=
-nnoremap p p'[v']=
 
 let Tlist_Inc_Winwidth = 1
 let Tlist_Exit_OnlyWindow = 0
@@ -79,14 +75,9 @@ let Tlist_Sort_Type = "name"
 set tags=./tags,tags
 au VimLeave * :mksession! ~/ide.session
 
-" visual shifting (does not exit Visual mode)
-vnoremap < >gv
-
 " page down with <space>
 nmap <space> <pagedown>
 nmap <c-u> <pageup>
-
-imap {<Tab> {<cr>}<esc>O
 
 " F2 - saving
 nmap <f2> :w<cr>
@@ -116,3 +107,5 @@ imap <f11> <esc>:TlistToggle<cr>
 map <f12> :Ex<cr>
 vmap <f12> <esc>:Ex<cr>i
 imap <f12> <esc>:Ex<cr>i
+
+nnoremap <silent><c-/> <plug>NERDCommenterToggle <ESC>:call NERDComment(1, "toggle")<cr>
