@@ -12,6 +12,11 @@ set hidden
 call pathogen#infect()
 call pathogen#helptags()
 
+syntax on
+colorscheme desert
+
+let g:auto_save = 1
+
 " search
 set incsearch
 set ignorecase
