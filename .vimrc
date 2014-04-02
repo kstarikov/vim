@@ -2,15 +2,15 @@ let mapleader=","
 
 set completeopt = "menu,longest,preview"
 
-syntax on
 filetype plugin on
 
-colorscheme desert
 
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:SuperTabDefaultCompletionType = "context"
 
 set hidden
+call pathogen#infect()
+call pathogen#helptags()
 
 " search
 set incsearch
