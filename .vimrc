@@ -1,3 +1,32 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+
+" " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 let mapleader=","
 
 set completeopt = "menu,longest,preview"
@@ -82,23 +111,18 @@ au VimLeave * :mksession! ~/ide.session
 
 " page down with <space>
 nmap <space> <pagedown>
-nmap <c-u> <pageup>
 
-" F2 - saving
 nmap <f2> :w<cr>
 vmap <f2> <esc>:w<cr>i
 imap <f2> <esc>:w<cr>i
 
-" F6 - предыдущий буфер
 map <f6> :bp<cr>
 vmap <f6> <esc>:bp<cr>i
 imap <f6> <esc>:bp<cr>i
-" F7 - следующий буфер
 map <f7> :bn<cr>
 vmap <f7> <esc>:bn<cr>i
 imap <f7> <esc>:bn<cr>i
 
-" F10 - delete buffer
 map <f10> :bd<cr>
 vmap <f10> <esc>:bd<cr>
 imap <f10> <esc>:bd<cr>
@@ -114,3 +138,9 @@ vmap <f12> <esc>:Ex<cr>i
 imap <f12> <esc>:Ex<cr>i
 
 nnoremap <silent><c-/> <plug>NERDCommenterToggle <ESC>:call NERDComment(1, "toggle")<cr>
+
+let g:ref_use_vimproc = 1
+let g:ref_open = 'split'
+let g:ref_cache_dir = expand($TMP . '/vim_ref_cache/')
+nno <leader>K :<C-u>Unite ref/erlang
+            \ -vertical -default-action=split<CR>
