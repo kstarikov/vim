@@ -72,6 +72,10 @@ set history=999
 set scrolloff=4
 
 " tabs
+" make "tab" insert indents instead of tabs at the beginning of a line
+set smarttab
+" always uses spaces instead of tab characters
+set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
