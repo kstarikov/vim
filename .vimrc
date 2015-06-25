@@ -10,6 +10,9 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'sickill/vim-monokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-compiler'
 Plugin 'vim-erlang/vim-erlang-tags'
@@ -49,7 +52,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 syntax on
-colorscheme desert
+colorscheme monokai
 
 let g:auto_save = 1
 
