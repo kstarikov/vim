@@ -10,6 +10,14 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-markdown'
+Plugin 'shougo/deoplete.nvim'
+Plugin 'shougo/unite.vim'
 Plugin 'sickill/vim-monokai'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'morhetz/gruvbox'
@@ -19,6 +27,10 @@ Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'edkolev/erlang-motions.vim'
 Plugin 'sjl/tslime.vim'
+Plugin 'thinca/vim-ref'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'alem0lars/vim-colorscheme-darcula'
+Plugin 'reedes/vim-pencil'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,22 +49,25 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+set t_Co=256
+
 let mapleader=","
 
-set completeopt = "menu,longest,preview"
+let g:deoplete#enable_at_startup = 0
+set completeopt="menu,longest,preview"
 
 filetype plugin on
 
-
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-let g:SuperTabDefaultCompletionType = "context"
+" for erlang tags plugin
+:set runtimepath^=~/.config/nvim/bundle/vim-erlang-tags
 
 set hidden
-call pathogen#infect()
+execute pathogen#infect()
 call pathogen#helptags()
 
 syntax on
-colorscheme monokai
+set background=dark
+colorscheme jellybeans
 
 let g:auto_save = 1
 
@@ -60,6 +75,8 @@ let g:auto_save = 1
 set incsearch
 set ignorecase
 set hlsearch
+
+set number
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -121,6 +138,7 @@ let Tlist_Show_One_File = 1
 let Tlist_Sort_Type = "name"
 
 set tags=./tags,tags
+set tags^=~/work/tags
 au VimLeave * :mksession! ~/ide.session
 
 " page down with <space>
@@ -158,3 +176,33 @@ let g:ref_open = 'split'
 let g:ref_cache_dir = expand($TMP . '/vim_ref_cache/')
 nno <leader>K :<C-u>Unite ref/erlang
             \ -vertical -default-action=split<CR>
+
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+nmap <Space>q :q!<cr>
+
+let s:hidden_all = 0
+function! ToggleHiddenAll()
+	if s:hidden_all  == 0
+		let s:hidden_all = 1
+		set noshowmode
+		set noruler
+		set laststatus=0
+		set noshowcmd
+	else
+		let s:hidden_all = 0
+		set showmode
+		set ruler
+		set laststatus=2
+		set showcmd
+	endif
+endfunction
+
+nnoremap <S-h> :call ToggleHiddenAll()<CR>
+
+:set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯХЪБЮ;ABCDEFGHIJKLMNOPQRSTUVWXYZ{}<>,фисвуапршолдьтщзйкыегмцчняхъ;abcdefghijklmnopqrstuvwxyz[]
+
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"

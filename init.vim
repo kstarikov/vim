@@ -1,0 +1,1 @@
+/Users/kstarikov/.vimrc
