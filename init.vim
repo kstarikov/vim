@@ -10,6 +10,14 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'mhinz/vim-startify'
+Plugin 'kopischke/vim-stay'
+Plugin 'fsharp/vim-fsharp'
+Plugin 'vim-scripts/autumnleaf_modified.vim'
+Plugin 'nelstrom/vim-mac-classic-theme'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
@@ -51,7 +59,7 @@ filetype plugin indent on    " required
 
 set t_Co=256
 
-let mapleader=","
+let mapleader=' '
 
 let g:deoplete#enable_at_startup = 0
 set completeopt="menu,longest,preview"
@@ -68,6 +76,7 @@ call pathogen#helptags()
 syntax on
 set background=dark
 colorscheme jellybeans
+" colorscheme seoul256-light
 
 let g:auto_save = 1
 
@@ -120,14 +129,6 @@ set nonumber
 " Go back to the position the cursor was on the last time this file was edited
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
-map ,s :w<cr>
-
-nmap ,b :BufExplorer<cr>
-vmap ,b :BufExplorer<cr>
-
-map ,d :bp<cr>
-map ,f :bn<cr>
-
 let Tlist_Inc_Winwidth = 1
 let Tlist_Exit_OnlyWindow = 0
 let Tlist_File_Fold_Auto_Close = 1
@@ -141,10 +142,19 @@ set tags=./tags,tags
 set tags^=~/work/tags
 au VimLeave * :mksession! ~/ide.session
 
-tnoremap <C-[> <C-\><C-n>
+vnoremap ,c "*y
 
-" page down with <space>
-nmap <space> <pagedown>
+map <silent><Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R * `gem environment gemdir`/gems/*<CR><CR>
+map ,s :w<cr>
+
+nmap <Leader>b :BufExplorer<cr>
+nmap ,b :BufExplorer<cr>
+vmap <Leader>b :BufExplorer<cr>
+
+map ,d :bp<cr>
+map ,f :bn<cr>
+
+tnoremap <C-[> <C-\><C-n>
 
 nmap <f2> :w<cr>
 vmap <f2> <esc>:w<cr>i
@@ -157,8 +167,13 @@ map <f7> :bn<cr>
 vmap <f7> <esc>:bn<cr>i
 imap <f7> <esc>:bn<cr>i
 
+vnoremap <Leader>e y<C-w>lpa;;<cr><C-\><C-n><C-w>h
+nnoremap <Leader>e yap<C-w>lpa;;<cr><C-\><C-n><C-w>h
+
 vnoremap <F8> y<C-w>lpa<cr><C-\><C-n><C-w>h
 nnoremap <F8> yap<C-w>lpa<cr><C-\><C-n><C-w>h
+inoremap <F8> ;;<esc>yap<C-w>lpa<cr><C-\><C-n><C-w>h
+
 tnoremap <F8> <C-\><C-n><C-w>h
 
 map <f10> :bd<cr>
@@ -187,7 +202,7 @@ vmap <C-c><C-c> <Plug>SendSelectionToTmux
 nmap <C-c><C-c> <Plug>NormalModeSendToTmux
 nmap <C-c>r <Plug>SetTmuxVars
 
-nmap <Space>q :q!<cr>
+nmap <Leader>q :q!<cr>
 
 let s:hidden_all = 0
 function! ToggleHiddenAll()
@@ -212,3 +227,5 @@ nnoremap <S-h> :call ToggleHiddenAll()<CR>
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+let g:startify_custom_header = ['']
