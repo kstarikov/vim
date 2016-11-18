@@ -143,6 +143,7 @@ set tags^=~/work/tags
 au VimLeave * :mksession! ~/ide.session
 
 vnoremap ,c "*y
+vnoremap <C-r> "hy:%s/<C-r>h//g<left><left>
 
 map <silent><Leader>rt :!ctags --extra=+f --exclude=.git --exclude=log -R * `gem environment gemdir`/gems/*<CR><CR>
 map ,s :w<cr>
@@ -226,6 +227,5 @@ nnoremap <S-h> :call ToggleHiddenAll()<CR>
 :set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯХЪБЮ;ABCDEFGHIJKLMNOPQRSTUVWXYZ{}<>,фисвуапршолдьтщзйкыегмцчняхъ;abcdefghijklmnopqrstuvwxyz[]
 
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 let g:startify_custom_header = ['']
