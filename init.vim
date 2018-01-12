@@ -11,6 +11,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'easymotion/vim-easymotion'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-ruby/vim-ruby'
