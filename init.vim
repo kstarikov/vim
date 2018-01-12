@@ -10,6 +10,7 @@ call vundle#begin()
 " " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'easymotion/vim-easymotion'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-ruby/vim-ruby'
